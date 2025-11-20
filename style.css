@@ -1,0 +1,295 @@
+/* ===============================
+   Theme Variables
+=============================== */
+:root {
+  --bg: #faf7ff;
+  --text: #1a1224;
+  --muted: #5a5569;
+  --border: #e3d7fa;
+  --card-bg: #ffffff;
+  --accent: #b49fdd;
+  --radius: 12px;
+  --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f10;
+  --text: #f4edff;
+  --muted: #aaa4bd;
+  --border: #2a223d;
+  --card-bg: #18161d;
+  --accent: #b49fdd;
+}
+
+/* ===============================
+   Base Styles
+=============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  transition: background var(--transition), color var(--transition);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* ===============================
+   Navbar
+=============================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ===============================
+   Menu Button
+=============================== */
+#menu-btn,
+#close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#menu-btn {
+  width: 32px;
+  height: 32px;
+}
+
+#close-btn {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* ===============================
+   Sidebar Menu (Burger)
+=============================== */
+.menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 220px;
+  height: 100vh;
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 1.5rem;
+  gap: 1rem;
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.2);
+  border-left: 1px solid var(--border);
+  transition: right var(--transition);
+  z-index: 1001;
+}
+
+.menu.open {
+  right: 0;
+}
+
+.menu a {
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+/* ===============================
+   Overlay
+=============================== */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition);
+  z-index: 1000;
+}
+
+#overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===============================
+   Theme Toggle
+=============================== */
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  color: var(--text);
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  width: 28px;
+  height: 28px;
+}
+
+#icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] #icon-sun {
+  display: block;
+}
+
+[data-theme="dark"] #icon-moon {
+  display: none;
+}
+
+/* ===============================
+   Footer
+=============================== */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   Documentation Layout
+=============================== */
+.docs-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: calc(100vh - 120px);
+}
+
+.docs-sidebar {
+  flex: 0 0 220px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.docs-sidebar h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.docs-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.docs-sidebar a {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.docs-sidebar a:hover,
+.docs-sidebar a.active {
+  color: var(--accent);
+}
+
+.docs-content {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+/* Markdown Styling */
+.docs-content h1,
+.docs-content h2 {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.docs-content p {
+  color: var(--muted);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+pre {
+  background: var(--border);
+  padding: 1rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+code {
+  font-family: "Courier New", monospace;
+  background: var(--border);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+th {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===============================
+   Responsive
+=============================== */
+@media (max-width: 768px) {
+  .docs-layout {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .docs-sidebar {
+    position: relative;
+    top: auto;
+    width: 100%;
+  }
+}
